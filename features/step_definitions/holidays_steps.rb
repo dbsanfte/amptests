@@ -43,10 +43,13 @@ end
 Given(/^I am on the profile page$/) do
   @browser.goto @BASEURL + '/Landing/Pad'
   @browser.link(:text => 'Profile').when_present.click
-  @browser.link(:text => 'Holidays').when_present.click
+  @browser.link(:text => 'Holidays').wait_until_present # wait for pageload
 end
 
 Given(/^I request a new holiday$/) do
+  if @browser.link(:text => 'Holidays').exists?
+    @browser.link(:text => 'Holidays').click
+  end
   @browser.link(:text => 'New Request').when_present.click
 end
 
@@ -66,7 +69,7 @@ end
 Given(/^a start time of "(.*?)"$/) do |arg1|
   
   if arg1 != 'AM' && arg1 != 'Midday'
-    raise ArgumentException, 'input should be AM or Middday'
+    raise Exception, 'input should be AM or Middday'
   end
 
   list = @browser.select_list :id => 'StartTime'
@@ -88,7 +91,7 @@ end
 Given(/^an end time of "(.*?)"$/) do |arg1|
   
   if arg1 != 'PM' && arg1 != 'Midday'
-    raise ArgumentException, 'input should be PM or Midday'
+    raise Exception, 'input should be PM or Midday'
   end
 
   list = @browser.select_list :id => 'EndTime'
@@ -100,7 +103,7 @@ Given(/^a duration of "(.*?)"$/) do |arg1|
   @browser.text_field(:id => 'Duration').set arg1
 end
 
-Given(/^holiday information of "(.*?)"$/) do |arg1|
+Given(/^information of "(.*?)"$/) do |arg1|
   @browser.text_field(:id => 'Information').set arg1
 end
 
@@ -143,5 +146,30 @@ Then(/^I expect no holiday to be added$/) do
   @browser.goto @BASEURL + '/Landing/Pad'
   @browser.link(:text => 'Profile').when_present.click
   @browser.link(:text => 'Holidays').when_present.click
+  assert { @browser.link(:text => @startDate).exists? == false }
+end
+
+Given(/^I request a new absence$/) do
+  if @browser.link(:text => 'Absences').exists?
+    @browser.link(:text => 'Absences').click
+  end
+  @browser.link(:text => 'New Absence').when_present.click
+  @browser.span(:text => 'Save').wait_until_present # wait for page load
+end
+
+Given(/^a reason of "(.*?)"$/) do |arg1|
+  if arg1 != 'Please select a reason' && arg1 != 'Other absence' && arg1 != 'Illness' && arg1 != 'Working From Home' && arg1 != 'Out Of Office Appointment'
+    raise Exception, 'input should be one of: Please select a reason, Other absence, Illness, Working From Home, Out Of Office Appointment'
+  end
+
+  list = @browser.select_list :id => 'AReason_AbsenceReasonId'
+  list.exists?
+  list.select arg1
+end
+
+Then(/^I expect a link to a new absence request at "(.*?)" to appear on the page\.$/) do |arg1|
+  @browser.goto @BASEURL + '/Landing/Pad'
+  @browser.link(:text => 'Profile').when_present.click
+  @browser.link(:text => 'Absences').when_present.click
   assert { @browser.link(:text => @startDate).exists? == false }
 end

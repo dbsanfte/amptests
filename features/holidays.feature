@@ -17,9 +17,8 @@ Scenario: The cancel button should close the holiday window and no holiday shoul
 	And an end time of "Midday"
 	And information of "information"
 	When I click cancel
-	Then I expect the holiday window to close
+	Then I expect the popup window to close
 	And I expect no holiday to be added
-
 
 Scenario: The close button should close the holiday window and no holiday should be submitted
 
@@ -30,50 +29,9 @@ Scenario: The close button should close the holiday window and no holiday should
 	And an end date of "18/11/2013"
 	And an end time of "Midday"
 	And information of "information"
-	When I close the add holiday popup window
-	Then I expect the holiday window to close
+	When I close the popup window
+	Then I expect the popup window to close
 	And I expect no holiday to be added
-
-
-Scenario Outline: Add a basic absence from the landing page
-
-	Given I am on the landing page
-	And I request a new absence
-	And a start date of "<start_date>"
-	And a start time of "<start_time>"
-	And an end date of "<end_date>"
-	And an end time of "<end_time>"
-	And a reason of "<reason>"
-	And information of "<information>"
-	And there are no data validation errors
-	When I see the duration calculated
-	And I click Save
-	Then I expect a link to a new absence request at "<start_date>" to appear on the page.
-
-	Examples:
-		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
-		| 20/12/2013 |         AM | 20/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Landing Page |
-
-
-Scenario Outline: Add a basic absence from the profile page
-
-	Given I am on the profile page
-	And I request a new absence
-	And a start date of "<start_date>"
-	And a start time of "<start_time>"
-	And an end date of "<end_date>"
-	And an end time of "<end_time>"
-	And a reason of "<reason>"
-	And information of "<information>"
-	And there are no data validation errors
-	When I see the duration calculated
-	And I click Save
-	Then I expect a link to a new absence request at "<start_date>" to appear on the page.
-
-	Examples:
-		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
-		| 19/12/2013 |         AM | 19/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Profile Page |
-
 
 Scenario Outline: Add a basic holiday from the landing page
 	
@@ -93,7 +51,6 @@ Scenario Outline: Add a basic holiday from the landing page
 		| start_date | start_time | end_date   | end_time |                          information                                |
 		| 5/12/2013 |         AM | 5/12/2013 |   Midday | Doctors Appointment - Test Holiday for AMP Testing via Landing Page |
 
-
 Scenario Outline: Add a basic holiday from the profile page
 	
 	Given I am on the profile page
@@ -111,7 +68,6 @@ Scenario Outline: Add a basic holiday from the profile page
 	Examples:
 		| start_date | start_time | end_date   | end_time |                               information                              |
 		| 6/12/2013 |         AM | 6/12/2013 |   Midday |    Doctors Appointment - Test Holiday for AMP Testing via Profile Page |
-
 
 Scenario Outline: The duration of a holiday should be automatically calculated by the submission form
 	

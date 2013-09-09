@@ -11,9 +11,9 @@ Scenario: The cancel button should close the holiday window and no holiday shoul
 
 	Given I am on the profile page
 	And I request a new holiday
-	And a start date of "18/12/2013"
+	And a start date of "18/11/2013"
 	And a start time of "AM"
-	And an end date of "18/12/2013"
+	And an end date of "18/11/2013"
 	And an end time of "Midday"
 	And information of "information"
 	When I click cancel
@@ -25,9 +25,9 @@ Scenario: The close button should close the holiday window and no holiday should
 
 	Given I am on the profile page
 	And I request a new holiday
-	And a start date of "18/12/2013"
+	And a start date of "18/11/2013"
 	And a start time of "AM"
-	And an end date of "18/12/2013"
+	And an end date of "18/11/2013"
 	And an end time of "Midday"
 	And information of "information"
 	When I close the add holiday popup window
@@ -52,7 +52,7 @@ Scenario Outline: Add a basic absence from the landing page
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
-		| 16/12/2013 |         AM | 16/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Landing Page |
+		| 20/12/2013 |         AM | 20/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Landing Page |
 
 
 Scenario Outline: Add a basic absence from the profile page
@@ -72,7 +72,7 @@ Scenario Outline: Add a basic absence from the profile page
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
-		| 16/12/2013 |         AM | 16/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Profile Page |
+		| 19/12/2013 |         AM | 19/12/2013 |   Midday |  Illness | Doctors Appointment - Test Absence for AMP Testing via Profile Page |
 
 
 Scenario Outline: Add a basic holiday from the landing page
@@ -91,7 +91,7 @@ Scenario Outline: Add a basic holiday from the landing page
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |                          information                                |
-		| 16/12/2013 |         AM | 16/12/2013 |   Midday | Doctors Appointment - Test Holiday for AMP Testing via Landing Page |
+		| 5/12/2013 |         AM | 5/12/2013 |   Midday | Doctors Appointment - Test Holiday for AMP Testing via Landing Page |
 
 
 Scenario Outline: Add a basic holiday from the profile page
@@ -110,7 +110,7 @@ Scenario Outline: Add a basic holiday from the profile page
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |                               information                              |
-		| 17/12/2013 |         AM | 17/12/2013 |   Midday |    Doctors Appointment - Test Holiday for AMP Testing via Profile Page |
+		| 6/12/2013 |         AM | 6/12/2013 |   Midday |    Doctors Appointment - Test Holiday for AMP Testing via Profile Page |
 
 
 Scenario Outline: The duration of a holiday should be automatically calculated by the submission form

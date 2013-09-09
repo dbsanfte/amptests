@@ -9,8 +9,8 @@ Given(/^a start date of "(.*?)"$/) do |arg1|
   @pageModel.StartDateTextField.fire_event('onfocus')
 
   Calendar.new(@browser).setDate(arg1)
+
   Watir::Wait.until { @pageModel.StartDateTextField.value == arg1 }
-  
   assert { @pageModel.StartDateTextField.value == arg1 }
   @startDate = arg1 # save this for a later verification step
 
@@ -82,5 +82,5 @@ When(/^I click cancel$/) do
 end
 
 Then(/^I expect the popup window to close$/) do
-  Watir::Wait.until { @pageModel.PopupSaveButton.exists? == false }
+  @pageModel.PopupSaveButton.wait_while_present
 end

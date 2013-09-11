@@ -45,10 +45,11 @@ Scenario Outline: Add a basic holiday from the landing page
 	And there are no data validation errors
 	When I see the duration calculated
 	And I click Save
-	Then I expect a link to a new holiday request at "<start_date>" to appear on the page.
+	Then I expect the popup window to close
+	And I expect a link to a new holiday request at "<start_date>" to appear on the page.
 
 	Examples:
-		| start_date | start_time | end_date   | end_time |                          information                                |
+		| start_date | start_time | end_date    | end_time |                          information                                |
 		| 05/12/2013 |         AM | 05/12/2013  |   Midday | Doctors Appointment - Test Holiday for AMP Testing via Landing Page |
 
 Scenario Outline: Add a basic holiday from the profile page
@@ -63,10 +64,11 @@ Scenario Outline: Add a basic holiday from the profile page
 	And there are no data validation errors
 	When I see the duration calculated
 	And I click Save
-	Then I expect a link to a new holiday request at "<start_date>" to appear on the page.
+	Then I expect the popup window to close
+	And I expect a link to a new holiday request at "<start_date>" to appear on the page.
 
 	Examples:
-		| start_date | start_time | end_date   | end_time |                               information                              |
+		| start_date | start_time | end_date    | end_time |                               information                              |
 		| 06/12/2013 |         AM | 06/12/2013  |   Midday |    Doctors Appointment - Test Holiday for AMP Testing via Profile Page |
 
 Scenario Outline: The duration of a holiday should be automatically calculated by the submission form

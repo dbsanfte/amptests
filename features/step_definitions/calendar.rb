@@ -23,6 +23,10 @@ class Calendar
       end 
     end
 
+    @browser.div(:id => 'ui-datepicker-div').fire_event('onfocus')
+    @browser.span(:class => 'ui-datepicker-year').fire_event('onfocus')
+    @browser.span(:class => 'ui-datepicker-month').fire_event('onfocus')
+    
     @browser.link(:text => date[0].to_i.to_s).click # sanitize date[0] in case of leading zeroes on the day
   end
 end

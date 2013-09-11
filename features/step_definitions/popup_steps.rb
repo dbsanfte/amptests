@@ -22,7 +22,7 @@ Given(/^a start time of "(.*?)"$/) do |arg1|
     raise Exception, 'input should be AM or Middday'
   end
 
-  @pageModel.StartTimeDropdownList.exists?
+  @pageModel.StartTimeDropdownList.when_present.fire_event('onfocus')
   @pageModel.StartTimeDropdownList.select arg1
 end
 
@@ -43,15 +43,17 @@ Given(/^an end time of "(.*?)"$/) do |arg1|
     raise Exception, 'input should be PM or Midday'
   end
 
-  @pageModel.FinishTimeDropdownList.exists?
+  @pageModel.FinishTimeDropdownList.when_present.fire_event('onfocus')
   @pageModel.FinishTimeDropdownList.select arg1
 end
 
 Given(/^a duration of "(.*?)"$/) do |arg1|
+  @pageModel.DurationTextField.fire_event('onfocus')
   @pageModel.DurationTextField.set arg1
 end
 
 Given(/^information of "(.*?)"$/) do |arg1|
+  @pageModel.InformationTextField.fire_event('onfocus')
   @pageModel.InformationTextField.set arg1
 end
 
@@ -62,6 +64,7 @@ Given(/^there are no data validation errors$/) do
 end
 
 When(/^I click Save$/) do
+  @pageModel.PopupSaveButton.when_present.fire_event('onfocus')
   @pageModel.PopupSaveButton.click
 end
 
@@ -74,10 +77,12 @@ Then(/^I expect a duration of "(.*?)"$/) do |arg1|
 end
 
 When(/^I close the popup window$/) do
+  @pageModel.PopupWindowCloseButton.fire_event('onfocus')
   @pageModel.PopupWindowCloseButton.click
 end
 
 When(/^I click cancel$/) do
+  @pageModel.PopupCancelButton.fire_event('onfocus')
   @pageModel.PopupCancelButton.click
 end
 

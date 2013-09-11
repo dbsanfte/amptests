@@ -15,9 +15,8 @@ Given(/^a reason of "(.*?)"$/) do |arg1|
     raise Exception, 'input should be one of: Please select a reason, Other absence, Illness, Working From Home, Out Of Office Appointment'
   end
 
-  list = @browser.select_list :id => 'AReason_AbsenceReasonId'
-  list.exists?
-  list.select arg1
+  @pageModel.AbsenceReasonDropdownList.when_present.fire_event('onfocus')
+  @pageModel.AbsenceReasonDropdownList.select arg1
 end
 
 Then(/^I expect a link to a new absence request at "(.*?)" to appear on the page\.$/) do |arg1|

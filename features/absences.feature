@@ -20,7 +20,8 @@ Scenario Outline: Add a basic absence from the landing page
 	And there are no data validation errors
 	When I see the duration calculated
 	And I click Save
-	Then I expect a link to a new absence request at "<start_date>" to appear on the page.
+	Then I expect the popup window to close
+	And I expect a link to a new absence request at "<start_date>" to appear on the page.
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
@@ -39,7 +40,8 @@ Scenario Outline: Add a basic absence from the profile page
 	And there are no data validation errors
 	When I see the duration calculated
 	And I click Save
-	Then I expect a link to a new absence request at "<start_date>" to appear on the page.
+	Then I expect the popup window to close
+	And I expect a link to a new absence request at "<start_date>" to appear on the page.
 
 	Examples:
 		| start_date | start_time | end_date   | end_time |   reason |                          information                                |
